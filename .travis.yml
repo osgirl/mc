@@ -1,0 +1,12 @@
+language: python
+python:
+        - "3.4"
+sudo : required 
+services: 
+        - docker 
+jobs:
+   scripts:
+            - cd web_grep && docker build -t mc .
+            - docker run mc
+            
+
