@@ -2,7 +2,7 @@ sudo : required
 services: 
         - docker 
 jobs:
-   scripts:
+   script:
             - cd web_grep && docker build -t mc .
             - docker run mc
             
