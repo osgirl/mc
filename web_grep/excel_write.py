@@ -16,7 +16,7 @@ def create_output():
     ws1.cell(row=1, column=2, value='Availablity')
     ws1.cell(row=1, column=3, value='Sale')
     ws1.cell(row=1, column=4, value='Size')
-    wb.save('output.xlsx')
+    #wb.save('output.xlsx')
     #a='123'+'\n'+'outof'+'\n'+'test'
 
     #ws1.cell(row=1,column=5,value=a)

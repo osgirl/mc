@@ -1,8 +1,9 @@
 sudo : required 
 services: 
-        - docker 
+        - docker
 script:
-            - cd web_grep && docker build -t mc .
-            - docker run mc
+            - cd web_grep && docker build -t mc . 
             
+            - cd web_grep &&  docker run -v /home:/app/mc  -e FILE_NAME='/product_test.xlsx' -it mc   
 
+          
