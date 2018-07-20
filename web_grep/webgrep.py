@@ -113,7 +113,7 @@ if __name__=='__main__':
             print(e.reason)
     outputwb.save('Mothercare'+datetime.date.today().strftime("%Y-%m-%d")+'.xlsx')
     try:
-        outputwb.save('/app/mc/'+'Mothercare'+datetime.date.today().strftime("%Y-%m-%d")+'.xlsx')
+        outputwb.save('/app/mc/'+'Mothercare'+datetime.date.today().strftime("%Y-%m-%d")+'output.xlsx')
     except FileNotFoundError as e:
         print("Skip file save in /app/mc")
     
