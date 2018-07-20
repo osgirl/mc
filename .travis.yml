@@ -1,9 +1,16 @@
 sudo : required 
 services: 
         - docker
-script:
-            - cd web_grep && docker build -t mc . 
-            
-            - docker run -v /home:/app/mc  -e FILE_NAME='/product_test.xlsx' -it mc   
-
+jobs:
+        include:
+         - stae: test
+           script:
+            - cd web_grep && docker build -t anyu686/mc . 
+            - docker run -v /home:/app/mc  -e FILE_NAME='/product_test.xlsx' -it anyu686/mc 
+           after_success:
+            - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin  
+            - docker push anyu686/mc:latest
+         - stage: deploy
+           script:
+            - docker run -v /home:/app/mc  -e FILE_NAME='/product_test.xlsx' -it anyu686/mc
           
