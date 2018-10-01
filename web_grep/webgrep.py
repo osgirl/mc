@@ -20,7 +20,7 @@ def salecheck(stock_lists):
                 for size_list in size1:
                     if size_list in sale_item:
                          ava1=1
-    #                        print('ava1=1')
+                        # print('ava1=1')
                          break              
     #             else:
     #                ava1=0
@@ -47,7 +47,9 @@ if __name__=='__main__':
             req = urllib.request.Request(url, data)
             resp = urllib.request.urlopen(req)
             respData = resp.read().decode('utf-8')
-            #print(respData)
+            #f=open('temp1','w')
+            #f.write(respData)
+            #f.close()
             result=[]
             stock_lists=[]
             ava=1
@@ -60,13 +62,24 @@ if __name__=='__main__':
                 if 'sale' in line[i] and len(line[i])<5:
                     salecount=salecount+1
                 if any(word in line[i] for word in size):
-                    if len(line[i])<30:
-                        if 'out of stock' not in line[i]:
-                            stock_list=str(line[i]+' in stock\n')
+                   # siset(line[i])
+                   # sizetmp=set(line[i])-(set(line[i])-set(size))
+                   # print(sizetmp)
+                   product_size="none"
+                   for sizetmp in size:
+                        if sizetmp in line[i]:
+                            product_size=sizetmp
+                            break
+
+                   if 'data-enabled' in line[i-1]:
+                       # print(line[i])
+                       # print(line[i-1])
+                        if 'true' in line[i-1]:
+                            stock_list=str(product_size+' in stock\n')
                         else:
-                            stock_list=str(line[i])
+                            stock_list=str(product_size+' out of stock')
                         stock_lists.append(stock_list+'\n')
-        #            print(stock_lists)
+                   # print(stock_lists)
             if ava==0:
                 no_availablity_counter=no_availablity_counter+1
                 row_max=output.max_row
@@ -77,6 +90,7 @@ if __name__=='__main__':
                 #print('No product available')
             if salecount>1 and ava==1:
                 sale_counter=sale_counter+1
+                #print(stock_lists)
                 ava=salecheck(stock_lists)
         #       print(ava)
                 #for sale_item in stock_lists:

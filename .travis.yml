@@ -16,8 +16,7 @@ jobs:
            addons:
                 artifacts:
                 debug: true
-                paths:
-                - ./home/*output*
+                paths: /home/*output*
                 target_paths: $TRAVIS_BUILD_NUMBER
                 #working_dir: WORKING_DIR
                 bucket: simplelance
